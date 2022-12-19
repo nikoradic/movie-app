@@ -1,7 +1,8 @@
 import React from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const url = "https://api.themoviedb.org/3/movie/{movie_id}?api_key=ff534bf921004fc8678888467e1c97ca&language=en-US";
+const apiURL = "https://api.themoviedb.org/3/movie/";
+const apiKEY = "ff534bf921004fc8678888467e1c97ca";
 
 const SingleMovie = () => {
   const { id } = useParams();
@@ -10,17 +11,10 @@ const SingleMovie = () => {
   React.useEffect(() => {
     async function getMovie() {
       try {
-        const response = await fetch(`${url}${id}`);
+        const response = await fetch(`${apiURL}${id}?api_key=${apiKEY}`);
         const data = await response.json();
-        if (data.movies) {
-          const { title: name } = data.drinks[0];
-          const newMovie = {
-            name,
-          };
-          setMovie(newMovie);
-        } else {
-          setMovie(null);
-        }
+        console.log(data);
+        setMovie(data);
       } catch (error) {
         console.log(error);
       }
@@ -30,13 +24,16 @@ const SingleMovie = () => {
   if (!movie) {
     return <h2 className="section-title"> no movie to display</h2>;
   }
-  const { name } = movie;
   return (
-    <section className="section cocktail-section">
-      <Link to={`/movie/${id}`} className="btn btn-primary btn-details">
-        Details
-      </Link>
-      <h2 className="section-title">{name}</h2>
+    <section className="section container-fluid">
+      <h2 className="section-title">{movie.title}</h2>
+      <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path} `} alt="movie" width={1000}></img>
+      <p>{movie.tagline}</p>
+      <ul>
+        {movie.genres.map((genre) => (
+          <li>{genre.name}</li>
+        ))}
+      </ul>
     </section>
   );
 };
