@@ -1,8 +1,65 @@
 body {
   background-color: #141414;
-  color: aliceblue;
+  color: #f5c518;
 }
 .movie-app > .row {
   overflow-x: auto;
   flex-wrap: nowrap;
+}
+.image-container {
+  position: relative;
+  transition: transform 0.2s;
+}
+
+.image-container:hover {
+  animation: bounce 0.5s linear;
+}
+
+@keyframes bounce {
+  20% {
+    transform: translate(-6px);
+  }
+  40% {
+    transform: translate(0px);
+  }
+  60% {
+    transform: translate(-2px);
+  }
+  80% {
+    transform: translate(0px);
+  }
+}
+
+.image-container:hover .overlay {
+  opacity: 1;
+}
+
+.overlay {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.8);
+  width: 200px;
+  transition: 0.5s ease;
+  opacity: 0;
+  bottom: 0;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+}
+.movie-item {
+  max-width: 300px;
+}
+.color-text {
+  color: white;
+}
+.plusButton {
+  margin-top: 0px;
+}
+.plusText {
+  margin-right: 15px;
+}
+
+.trashButton {
+  margin-bottom: 0px;
 }
