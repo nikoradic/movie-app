@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-
 import MovieList from "../components/MovieList";
 import MovieListHeading from "../components/MovieListHeading";
 import SearchBox from "../components/SearchBox";
 import SearchMovieList from "../components/SearchMovieList";
 import RecentlyViewedButton from "../components/RecentlyViewedButton";
 import RemoveMovies from "../components/RemoveMovies";
+import App from "../App";
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [movies, setMovies] = useState([]);
   const [recentlyViewed, setRecentlyViewed] = useState([]);
-  const [searchValue, setSearchValue] = useState("Batman");
+  // const [searchValue, setSearchValue] = useState("Batman");
 
   const getMovieFront = async () => {
     const url =
@@ -40,7 +40,8 @@ const Home = () => {
       <div className="container-fluid movie-app ">
         <div className="row d-flex align-items-center mt-4 mb-4 ">
           <MovieListHeading heading="Movies" />
-          <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
+
+          {/* <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} /> */}
         </div>
         <div className="row">
           <MovieList movies={movies} handleRecentlyClick={addRecentlyMovie} recentlyComponent={RecentlyViewedButton} />

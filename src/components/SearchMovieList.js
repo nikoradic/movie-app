@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import RecentlyViewedButton from "./RecentlyViewedButton";
+import { Link } from "react-router-dom";
 
 const SearchMovieList = ({ searchValue, handleRecentlyClick }) => {
   const [movies, setMovies] = useState([]);
@@ -25,7 +26,9 @@ const SearchMovieList = ({ searchValue, handleRecentlyClick }) => {
       <>
         {movies.map((movie, index) => (
           <div key={movie.id} className=" col image-container d-flex justify-content-start  movie-item">
-            <img src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`} alt="movie"></img>
+            <Link to={`/movie/${movie.id}`}>
+              <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="movie" width={200}></img>
+            </Link>
             <div
               onClick={() => handleRecentlyClick(movie)}
               className="overlay d-flex algin-items-center justify-content-center"

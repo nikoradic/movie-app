@@ -26,14 +26,23 @@ const SingleMovie = () => {
   }
   return (
     <div className=" container-fluid ">
-      <h2 className="section-title">{movie.title}</h2>
-      <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path} `} alt="movie" width={1000}></img>
-      <p>{movie.tagline}</p>
+      <div className="text-center">
+        <h2 className="section-title">{movie.title}</h2>
+        <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path} `} alt="movie" width={1000}></img>
+      </div>
+      <h3>{movie.tagline}</h3>
+      <p className="color-text">{movie.overview}</p>
+
       <ul>
         {movie.genres.map((genre) => (
-          <li>{genre.name}</li>
+          <li className="badge bg-secondary  gap">{genre.name}</li>
         ))}
       </ul>
+      <div>
+        {movie.production_companies.map((companies) => (
+          <p>{companies.name}</p>
+        ))}
+      </div>
     </div>
   );
 };
